@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[使用rsyslog和ELK收集存储海量日志]]></title>
+    <url>%2Fp%2Fhost-log-collecting-rsyslog-kafka-es%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>rsyslog</tag>
+        <tag>Kafka</tag>
+        <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见排序算法伪代码]]></title>
+    <url>%2Fp%2Fsort-algorithm-code%2F</url>
+    <content type="text"><![CDATA[冒泡排序1234567for i = [0, n) for j = [0, n - i) if x[j] &gt; x[j+1] swap(x[j], x[j+1]) end endend 选择排序123456789for i = [0, n-1) min = i for j = [i+1, n) if x[min] &gt; x[j] min = j end end swap(x[min], x[i])end 插入排序1234567for i = [1, n) t = x[i] for (j = i; j &gt; 0 &amp;&amp; x[j-1] &gt; t; j--) x[j] = x[j-1] end x[j] = tend 快速排序1234567891011121314void qsort(l, u) &#123; if (l &gt;= u) return end m = l for i = [l+1, u] if (x[i] &lt; x[l]) swap(++m, i) end end swap(l, m) qsort(l, m-1) qsort(m+1, u)&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[二分搜索、最大子序列伪代码]]></title>
+    <url>%2Fp%2Fcommon-algorithm-code%2F</url>
+    <content type="text"><![CDATA[最大子序列 前i个元素中，最大子序列要么在前i-1个元素中(存储在maxsofar中)，要么其结束位置为i(存储在maxendinghere中)。 最后结果存储在maxsofar中，但是需要着重理解maxendinghere123456maxsofar = 0maxendinghere = 0for i = [0, n) maxendinghere = max(maxendinghere + x[i], 0) maxsofar = max(maxsofar, maxendinghere)end 二分搜索二分搜索1 最简单的二分搜索，但是对于连续的t，无法保证顺序123456789101112l = 0; u = n-1loop if l &gt; u p = -1; break end m = (l + u)/2 case x[m] &lt; t: l = m+1 x[m] == t: p = m; break x[m] &gt; t: u = m-1 endend 二分搜索2 可以确定t在数组中第一次出现的位置 循环中只进行一次比较，更加高效12345678910111213l = -1; u = nwhile l+1 != u m = (l + u)/2 if x[m] &lt; t l = m else u = m endendp = uif p &gt;= n || x[p] != t p = -1end 生成m个随机数 bigrand() 返回一个远大于n或者m的随机数1234567for i = [0, n) // select m of remaining n-i if (bigrand() % (n-i)) &lt; m print i m-- endend]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ShadowSocks、Fiddler和Proxifier]]></title>
+    <url>%2Fp%2Ffiddler-proxifier-shadowsocks%2F</url>
+    <content type="text"><![CDATA[FiddlerFiddler是一些Web开发人员常用的抓包工具，用于分析Http流量，在翻墙的时候可以用于翻一些UWP应用（微软对UWP的限制）。其原理是借助于系统代理设置，将浏览器的http请求转发到fiddler监听的端口，获取其数据。其工作在应用层 ProxifierProxifier用于将一些非http协议的流量（微信、QQ等）转发到指定端口。比如shadowsocks的1080端口，就可以全局翻墙了，你的电脑就和在美国的一个电脑没什么两样，就是速度差点。 ShadowSocksShadowSocks也是借助了系统浏览器的系统代理来代理流量，因此默认情况下只有浏览器可以翻墙，通过与Proxifier配合，可以代理本地的绝大部分流量，再加上Fiddler将UWP软件“解封”，就可以随便翻墙上网了，结合ipv6更可以实现校园网免流量上网，Cool!!!]]></content>
+      <tags>
+        <tag>ShadowSocks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用hexo搭建自己的个人博客]]></title>
+    <url>%2Fp%2Fblog-hexo-ubuntu-from-zero%2F</url>
+    <content type="text"><![CDATA[云服务器购买买一个云服务器，推荐腾讯云的云+校园计划，不仅仅每月10元获取一个云服务器，还可以买一个域名，非常划算。或者阿里的云翼计划，9.9一个月。购买完服务器后选择Ubuntu14.04操作系统，记录下公网ip以及用户名（通常为root）和密码 云服务器配置下载ssh工具putty，使用ip和用户名密码连接云服务器，连接成功后大致是这样子的。首先依次执行下面代码，有询问时一律选Y 1234sudo apt-get updatesudo apt-get upgradesudo apt-get install apache2sudo apt-get install php5 libapache2-mod-php5 这时候，apache以及php5已经安装上了，你可以访问 http://123.123.123.123 来访问你的默认页面。Apache2 Ubuntu Default Page 然后参考hexo官网安装hexo。依次执行下面的命令 12345sudo apt-get install git git-corewget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh#重新连接ssh或执行 bash 命令后再执行下面的命令nvm install stablenpm install -g --unsafe-perm hexo-cli 这是hexo已经安装了，但是还需要一些配置 配置Apache比如配置https，重定向等，自行Google，有很多相关总结 配置hexo选择一个目录 比如/var/hexo执行下面命令 12345hexo init /var/hexocd /var/hexo/npm install# 更新hexo-fs库，避免 (node:2416) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.npm install hexo-fs --save 然后首先修改/var/hexo/_config.yml文件来进行一些简单配置，这里只修改public_dir为 1public_dir: ../www/html 这样生成的时候就会把网页直接生成到网站的默认目录下面。其他参数具体参考Hexo官方文档。然后执行 1hexo g 然后访问你的ip地址 http://123.123.123.123 即可查看你的hexo博客，默认的界面挺丑的，你可以选择其他的主题进行配置。 写文章时使用的Markdown语法 ###参考资料hexo官方文档next主题马克飞象]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用DigitalOcean搭建ShadowSocks服务器环境实现科学上网及优化]]></title>
+    <url>%2Fp%2Fshadowsocks-digitalocean-build%2F</url>
+    <content type="text"><![CDATA[买国外的VPS比较知名且性价比高的有DigitalOcean，搬瓦工，Vultr等推荐去DigitalOcean买，可以使用我的推荐链接digitalocean.com，注册获得10刀的额度学生可以利用Github Student Package获取50刀的额度，具体方法可以上网搜索，有很多。注册时需要使用信用卡或者paypal付款5刀进行验证，之后才可以使用。如果学生优惠券不能用，给客服发工单即可解决。 购买时建议买最低配5$一个月的，系统选择Ubuntu14.0x 64位，还有一些其他配置看你需求。 安装配置shadowsocks服务器端之后会发邮件告诉你密码，用ssh登录并更改密码即可。然后依次执行下面的代码 更新源 12sudo apt-get updatesudo apt-get upgrade 安装pip 12apt-get install python-pippip install shadowsocks 配置shadowsocks参数 1vim /etc/ssconfig.json 服务器参数为”::”，用于同时支持ipv6和ipv4 12345678&#123; "server": "::", "server_port": 8388, "local_port": 1080, "password": "passwd", "timeout": 300, "method": "aes-256-cfb"&#125; 后台启动shadowsocks server 1ssserver -c /etc/ssconfig.json -d start 安装配置客户端Windows环境下载最新客户端并配置其服务器地址，可以配置一份ipv6地址用于教育网客户端免流量上网，然后启用系统代理，采用PAC模式，即可访问墙外网站啦 安装TCP加速软件（锐速或BBR）单纯安装完ss后的网络速度可能不能够满足我们的需求，这时可以选择安装锐速或者开启TCP BBR拥塞控制算法（两者目前不能同时安装，由于linux内核原因）。下面分别介绍。在Ubuntu14.04环境下，锐速要求linux内核版本为4.2.0-35-generic，而BBR要求linux内核在4.9以上。内核版本可以使用uname -r查看。如果内核不符合的，可以对其进行更改。要求vps为KVM架构。使用如下命令 1sudo apt-get install linux-image-extra-4.2.0-35-generic BBR则应该使用下载安装包的方式安装 12wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.17/linux-image-4.10.17-041017-generic_4.10.17-041017.201705201051_amd64.debdpkg -i linux-image-4.*.deb 当安装完新的内核之后，需要将原来的内核移除掉。使用dpkg -l|grep linux-image命令查看当前内核 1sudo apt-get purge linux-image-xxxx-generic linux-image-extra-xxxx-generic xxxx为linux原来的内核版本号之后更新 grub 系统引导文件并重启 12sudo update-grub sudo reboot 重启完之后再使用uname -r查看是否成功安装 下面是安装锐速的方法 1wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh &amp;&amp; bash serverspeeder.sh 下面是开启BBR算法的步骤使用lsmod | grep bbr查看是否安装了tcp_bbr 12345modprobe tcp_bbrecho "tcp_bbr" &gt;&gt; /etc/modulesecho "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.confecho "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.confsysctl -p 最后执行 12sysctl net.ipv4.tcp_available_congestion_controlsysctl net.ipv4.tcp_congestion_control 如果出现了bbr或者tcp_bbr模块，说明bbr已经开启并启动 注意锐速对ipv6好像没有什么作用，bbr好像可以部分提升ipv6的性能，具体的我也不明白。 ###SS代理客户端其他软件SS客户端上所说的启用系统代理其实只是针对支持系统代理方式上网的软件实现的（绝大多数浏览器都是这样）其实这时候你使用QQ、微信等软件时，它仍然走的时普通流量，这和VPN是有着本质区别的。SS只是在本地的1080端口开启了Socks5或者Http代理，不通过这个端口进行网络转发的话和原来的上网方式没有什么区别那么我如果想利用ipv6实现全局免流量上网时，就需要借助于Proxifier这个神器，来将其他所有软件的流量都发送到ss的代理端口，以实现全局免流量上网。 下面时不同版本的注册码 123L6Z8A-XY2J4-BTZ3P-ZZ7DF-A2Q9C（Portable Edition）5EZ8G-C3WL5-B56YG-SCXM9-6QZAP（Standard Edition）P427L-9Y552-5433E-8DSR3-58Z68（MAC） 以QQ和微信为例，安装完成后首先设置Socks5端口，这个是你SS客户端的监听端口，默认为1080，ip为127.0.0.1 然后对不同的软件设置不同的规则，如下图可以选择针对不同软件和不同端口的分别设置，后面的Action有Proxy、Direct和Block三种 Proxy就是指使用ss端口进行访问 Direct就是不对该软件进行转发，让其自然的直接访问 Block就是阻止该软件的网络连接 参考Github/shadowsocksruyetao.com91yungithub.com/iMeiji]]></content>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>ShadowSocks</tag>
+        <tag>DigitalOcean</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux中目录的读写和运行权限与文件的区别]]></title>
+    <url>%2Fp%2Flinux-directory-access%2F</url>
+    <content type="text"><![CDATA[读取权限 文件的读取权限表示是否能够读取其inode所指示的block内容，而不是inode内容，inode的读取权限与目录有关，如下图可以看出文件虽然什么权限都没有，但是仍然可以获取到其inode号码。 而目录的读取权限表示可以获取其block中所有的文件名信息，但是注意其只是获取目录下的所有文件名，并不能获取到其inode信息，因此也就不能读取文件内容运行权限 文件的运行权限很好理解，就是能否直接让操作系统去解释执行内容，而不必让操作者看到其block内容 目录的运行权限比较难理解，从上面的图2 中可以知道目录如果没有运行权限，就无法获取其目录下各个文件的inode编号，但是经过测试，如果仅仅具备rw权限，也是无法往目录下创建文件的，因此可以理解为，x权限控制着目录的block中其目录下所有文件的inode信息，没有x权限，就无法修改或者去读其下文件的inode信息，自然也就无法读取文件或者修改文件。 总的来说，目录的运行权限再大多数情况下都是必备的，所以最好保证它，可以通过控制目录下文件的权限来达到自己的效果。写入权限 文件的写入权限表示是否能够读取block中的内容 目录的写入权限就表示能够对block中的文件的内容进行修改，即与运行权限对比来看 总结可以参考鸟哥的Linux私房菜一、让使用者能进入某目录成为『可工作目录』的基本权限为何： 可使用的命令：例如 cd 等变换工作目录的命令；目录所需权限：使用者对这个目录至少需要具有 x 的权限额外需求：如果使用者想要在这个目录内利用 ls 查阅档名，则使用者对此目录还需要 r 的权限。二、使用者在某个目录内读取一个文件的基本权限为何？ 可使用的命令：例如本章谈到的 cat, more, less等等目录所需权限：使用者对这个目录至少需要具有 x 权限；文件所需权限：使用者对文件至少需要具有 r 的权限才行！三、让使用者可以修改一个文件的基本权限为何？ 可使用的命令：例如 nano 或未来要介绍的 vi 编辑器等；目录所需权限：使用者在该文件所在的目录至少要有 x 权限；文件所需权限：使用者对该文件至少要有 r, w 权限四、让一个使用者可以创建一个文件的基本权限为何？ 目录所需权限：使用者在该目录要具有 w,x 的权限，重点在 w 啦！五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？ 目录所需权限：使用者在该目录至少要有 x 的权限；文件所需权限：使用者在该文件至少需要有 x 的权限]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[三维房间自动生成视频Demo]]></title>
+    <url>%2Fp%2F3DRoomTest%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu14.04安装Caffe环境注意事项]]></title>
+    <url>%2Fp%2Fubuntu14-04-cuda-caffe%2F</url>
+    <content type="text"><![CDATA[Ubuntu14.04系统安装 安装完成后修改软件更新源，改为国内连通性较好且可靠的即可 更新软件包，安装必备软件(gcc)123sudo apt-get updatesudo apt-get upgradesudo apt-get install build-essential 安装驱动！！！ 使用下面得方法安装驱动，最为简单1234sudo add-apt-repository ppa:graphics-drivers/ppasudo apt-get updatesudo apt-cache search nvidia-*sudo apt-get install nvidia-xxx 根据search得结果选择一个驱动版本进行安装 下载较慢，保持淡定 安装完成后重启，系统分辨率应该正确，保证驱动安装正确后再执行后面步骤 Cuda安装 去Cuda官网下载对应版本得cuda1./cuda_8.0.61_375.26_linux.run 注意不要安装cuda附带得驱动！！！ 注意使用nvcc -V和安装得Samples来检测Cuda是否正确安装，后面可能存在so文件或者.h文件找不到得情况 Caffe 安装 首先安装Caffe官网的安装步骤安装依赖库 下载源码编译安装123456git clone https://github.com/BVLC/caffe.gitcd caffemake allmake testmake runtestmake matcaffe 再安装Faster RCNN等等吧]]></content>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Caffe</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[纺织品出口-txd]]></title>
+    <url>%2Fp%2FFangzhiPinChukou%2F</url>
+    <content type="text"><![CDATA[主要内容 本文首先分析了我国出口纺织业的发展现状和碳排放情况。数据表明，近十年来，我国纺织品对外贸易总额基本保持稳步增长的趋势。纺织品企业个数也基本达到一个稳定的状态。但是我国纺织品出口的发展情况是严重依赖于庞大的对外贸易规模的。而目前的产品缺乏技术水准、品牌价值低下。产品国际竞争力很弱。 接下来分析了纺织行业的碳排放情况。发现纺织品生产消耗的能源以煤炭和电力为主，且能源消费总量逐年上升。我国纺织品出口贸易的重要地位和能源结构的单一化是导致我国纺织行业能源消耗巨大的根本原因 然后简单介绍了低碳经济理论。结合我国纺织品行业发展情况阐述了纺织品出口面临的几个挑战。 低碳贸易壁垒严重影响纺织品出口。碳关税等政策给我国纺织制品出口带来了额外的成本。也给企业生存和发展带来了极大的压力。 对发达国家市场依存度高。特别是美国、日本和欧盟等国家和地区的市场，占总体比重很大。他们对于进口货物的碳排放要求也会愈加严格，这在未来会给我国的出口贸易带来很大的压力。 经营方式落后，产品附加值低。纺织企业的发展模式仍然比较落后，产品溢价低，纺织品没有美感，技术底下，缺乏品牌竞争力。 纺织行业低碳生产技术较低。在低碳技术方面，我国还有很大的待提高空间。能源结构不合理。低碳技术由于起步比较晚，距离美国等发达国家掌握的先进技术还有较大差距。 目前社会上的低碳意识不足。需求决定了生产，消费者的低碳认知水平也会直接引导企业的低碳发展情况。社会缺乏相关的低碳教育所造成的。大多数人并未意识到低碳经济的优势和必要性，没有从自身做起来践行低碳环保的要求。 然后从国家宏观调控方面提出了几点策略。 制定国内的碳关税政策。借助WTO制定的贸易协议中不得征收双重税的原则。率先在国内对纺织品生产过程所产生的碳排放征收碳税，这样在纺织品出口时其他国家就不能够再征收碳关税。 制定纺织品生产标准、完善立法体系只有完善环境保护和资源节约相关法规，才能够逐渐实现纺织品行业的低碳发展。建立和完善我国纺织品行业的标准。新的行业制度和标准才能促进纺织品企业进行低碳改革。 加大对纺织品企业的扶持力度。政府给予必要的支持，包括相关政策、资金和生产技术等多个方面。 加强国际间的低碳技术合作发达国家得低碳技术和相关低碳制度方面都比较成熟，对我国得纺织品行业低碳发展有很强的指导意义。 增强社会的低碳意识还应该增强全社会的低碳环保意识。对普通消费者进行低碳教育，比如在公共交通上投放宣传片，在一些中小学校组织相关的学习教育，让人们真实感受到低碳经济不仅仅是一个口号，更会实实在在地影响人们的生活。 更进一步从企业具体实施方面，提出了细化的改进措施。 开发和使用绿色纤维原料符合绿色低碳要求的新型纺织材料，使用这些绿色纤维可以极大地减少碳排放 使用环保生产工艺印染过程中消耗的能源量约占总消耗的60%。环保的生产工艺和技术就十分重要。在生产过程中开发新技术、使用新流程也能极大提高低碳水平。实现生产过程的自动化，可以极大地精简了服装生产过程，减少了劳动力资源。 建设纺织废料回收再利用体系废旧纺织品在经过回收再处理后，作为原料再次投入生产。不仅避免了浪费，减少了碳排放，还降低了纺织企业的成本。 重视产品的设计、提高竞争力可以把“低碳环保”的理念融入到纺织品的设计生产中去，重视纺织品的营销推广和企业形象的打造。在提升产品附加价值方面不断加大投入，改变传统粗放型的模式，提高产品的国际竞争力。 开拓新的纺织品出口市场开拓新的出口市场，降低对发达国家的依存度，有利于长远发展。 创新点 从多方面分析纺织品行业存在的问题和面临的挑战，对于出口贸易的影响。相比于其他的宏观研究，研究对象更加细致，更具有针对性和说服力。 从国家宏观方面和纺织品具体措施两大方面提出了针对性的解决策略。宏观方面可以从政策和大的发展角度保证纺织业出口的稳定性。企业改革措施的可行性比较强，可以逐步解决目前纺织行业存在的问题。 不足之处没有去深入地研究其他国家低碳经济的发展过程和方法，应该去借鉴其他国家的发展历程，这样为针对性策略的制定提供指导。 没有使用太多的数据分析方法，仅从数据的变化趋势进行了简单的分析。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[欢迎使用Hexo]]></title>
+    <url>%2Fp%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. 快速入门新建一个文章1$ hexo new "My New Post" More info: Writing{:rel=nofollow} Run server1$ hexo server More info: Server 生成静态文件1$ hexo generate More info: Generating 部署到远程站点1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
