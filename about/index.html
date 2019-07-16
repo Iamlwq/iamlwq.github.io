@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh_Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://www.liwenqiao.com/about/index.html">
 <meta property="og:site_name" content="Wenqiao&#39;s Blog">
 <meta property="og:description" content="分享编程技术和个人生活">
-<meta property="og:locale" content="zh_Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-08-23T11:24:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于我">
@@ -163,7 +163,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -194,7 +194,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -221,7 +221,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -237,7 +237,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -253,7 +253,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -285,7 +285,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
 
@@ -296,7 +296,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -316,7 +316,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Suche..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -456,7 +456,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -491,7 +491,7 @@
                       
                     
                     <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">schlagwörter</span>
+                    <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
               
@@ -559,7 +559,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
 
 
 
@@ -567,7 +567,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
 
 
 
@@ -1045,7 +1045,7 @@
   $('.highlight').not('.gist .highlight').each(function(i, e) {
     var $wrap = $('<div>').addClass('highlight-wrap');
     $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('Kopieren').on('click', function(e) {
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
       var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
         return $(e).text();
       }).toArray().join('\n');
@@ -1073,7 +1073,7 @@
     })).on('mouseleave', function(e) {
       var $b = $(this).find('.copy-btn');
       setTimeout(function() {
-        $b.text('Kopieren');
+        $b.text('复制');
       }, 300);
     }).append(e);
   })
