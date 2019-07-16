@@ -1,0 +1,18 @@
+# robots.txt generated at http://www.51240.com
+User-agent: *
+Allow: /
+Allow: /about/
+Allow: /archives/
+Allow: /tags/
+Allow: /p/
+Allow: /gopl-zh/
+
+Disallow: /lib/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /fancybox/
+Disallow: /resume/
+
+Sitemap: http://www.liwenqiao.com/sitemap.xml
+Sitemap: http://www.liwenqiao.com/baidusitemap.xml
