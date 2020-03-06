@@ -21,14 +21,6 @@
     <content type="text"><![CDATA[最大子序列 前i个元素中，最大子序列要么在前i-1个元素中(存储在maxsofar中)，要么其结束位置为i(存储在maxendinghere中)。 最后结果存储在maxsofar中，但是需要着重理解maxendinghere123456maxsofar = 0maxendinghere = 0for i = [0, n) maxendinghere = max(maxendinghere + x[i], 0) maxsofar = max(maxsofar, maxendinghere)end 二分搜索二分搜索1 最简单的二分搜索，但是对于连续的t，无法保证顺序123456789101112l = 0; u = n-1loop if l &gt; u p = -1; break end m = (l + u)/2 case x[m] &lt; t: l = m+1 x[m] == t: p = m; break x[m] &gt; t: u = m-1 endend 二分搜索2 可以确定t在数组中第一次出现的位置 循环中只进行一次比较，更加高效12345678910111213l = -1; u = nwhile l+1 != u m = (l + u)/2 if x[m] &lt; t l = m else u = m endendp = uif p &gt;= n || x[p] != t p = -1end 生成m个随机数 bigrand() 返回一个远大于n或者m的随机数1234567for i = [0, n) // select m of remaining n-i if (bigrand() % (n-i)) &lt; m print i m-- endend]]></content>
   </entry>
   <entry>
-    <title><![CDATA[ShadowSocks、Fiddler和Proxifier]]></title>
-    <url>%2Fp%2Ffiddler-proxifier-shadowsocks%2F</url>
-    <content type="text"><![CDATA[FiddlerFiddler是一些Web开发人员常用的抓包工具，用于分析Http流量，在翻墙的时候可以用于翻一些UWP应用（微软对UWP的限制）。其原理是借助于系统代理设置，将浏览器的http请求转发到fiddler监听的端口，获取其数据。其工作在应用层 ProxifierProxifier用于将一些非http协议的流量（微信、QQ等）转发到指定端口。比如shadowsocks的1080端口，就可以全局翻墙了，你的电脑就和在美国的一个电脑没什么两样，就是速度差点。 ShadowSocksShadowSocks也是借助了系统浏览器的系统代理来代理流量，因此默认情况下只有浏览器可以翻墙，通过与Proxifier配合，可以代理本地的绝大部分流量，再加上Fiddler将UWP软件“解封”，就可以随便翻墙上网了，结合ipv6更可以实现校园网免流量上网，Cool!!!]]></content>
-      <tags>
-        <tag>ShadowSocks</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[使用hexo搭建自己的个人博客]]></title>
     <url>%2Fp%2Fblog-hexo-ubuntu-from-zero%2F</url>
     <content type="text"><![CDATA[云服务器购买买一个云服务器，推荐腾讯云的云+校园计划，不仅仅每月10元获取一个云服务器，还可以买一个域名，非常划算。或者阿里的云翼计划，9.9一个月。购买完服务器后选择Ubuntu14.04操作系统，记录下公网ip以及用户名（通常为root）和密码 云服务器配置下载ssh工具putty，使用ip和用户名密码连接云服务器，连接成功后大致是这样子的。首先依次执行下面代码，有询问时一律选Y 1234sudo apt-get updatesudo apt-get upgradesudo apt-get install apache2sudo apt-get install php5 libapache2-mod-php5 这时候，apache以及php5已经安装上了，你可以访问 http://123.123.123.123 来访问你的默认页面。Apache2 Ubuntu Default Page 然后参考hexo官网安装hexo。依次执行下面的命令 12345sudo apt-get install git git-corewget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh#重新连接ssh或执行 bash 命令后再执行下面的命令nvm install stablenpm install -g --unsafe-perm hexo-cli 这是hexo已经安装了，但是还需要一些配置 配置Apache比如配置https，重定向等，自行Google，有很多相关总结 配置hexo选择一个目录 比如/var/hexo执行下面命令 12345hexo init /var/hexocd /var/hexo/npm install# 更新hexo-fs库，避免 (node:2416) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.npm install hexo-fs --save 然后首先修改/var/hexo/_config.yml文件来进行一些简单配置，这里只修改public_dir为 1public_dir: ../www/html 这样生成的时候就会把网页直接生成到网站的默认目录下面。其他参数具体参考Hexo官方文档。然后执行 1hexo g 然后访问你的ip地址 http://123.123.123.123 即可查看你的hexo博客，默认的界面挺丑的，你可以选择其他的主题进行配置。 写文章时使用的Markdown语法 ###参考资料hexo官方文档next主题马克飞象]]></content>
